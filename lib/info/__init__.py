@@ -1,3 +1,10 @@
+
+def despesas():
+    porcentagem = []
+    for i in porcentagem:
+        pass
+    
+	
 porcentagem = {
 	'Despesas': 50, #50% do salario no mês seram para as despesas
 	'Investimento': 30, #30% para os investimento tanto cursos como ativos
