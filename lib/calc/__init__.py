@@ -1,5 +1,4 @@
-def calculo(arg_txt,nome):
-    salario = int(input(f'Digite seu salário: R${nome}'))
+def calculo(arg_txt,salario):
     for lin in arg_txt:
         pct = arg_txt[lin]/100
         res = salario * pct
