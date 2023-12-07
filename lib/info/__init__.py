@@ -1,13 +1,24 @@
+dicionario = {}
+def despesas(**kwargs):
+    """-> Monta um dicionario com argumentos/valor passado.
+    :param **kwargs: argumentos e numero correspondete ao que se pede.
+    :return: retorna um dicionario."""
+    for valor, num in kwargs.items():
+        dicionario[valor] = num
+    return dicionario
 
-def despesas():
-    porcentagem = []
-    for i in porcentagem:
-        pass
-    
-	
-porcentagem = {
-	'Despesas': 50, #50% do salario no mês seram para as despesas
-	'Investimento': 30, #30% para os investimento tanto cursos como ativos
-	'Fundo Emergencial': 10, #10% para emergencial caso aconteça algum sinisto na vida
-	'Pode gastar': 10 #10% do salario vc podera gastar a toa, por que todo mundo tem direito a isso haha
-	}
+
+def mudar_conteudo_valor():
+	"""-> Modifica um dicionario.
+    :numero pede ao usuario a confirmação/alteração de valores.
+    :return: retorna um dicionario modificado."""
+	dicionario = despesas().copy()
+	for num, valor in dicionario.items():
+		numero = int(input(f'Digite um valor para {num} o atual é {valor}: '))
+		dicionario[num] = numero
+	return print(dicionario)
+		
+
+if __name__ == '__main__':
+	print(despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10))
+	mudar_conteudo_valor()
