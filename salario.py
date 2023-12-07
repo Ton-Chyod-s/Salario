@@ -4,6 +4,7 @@ import PySimpleGUI as sg
 selected_theme = 'Reddit'
 sg.theme(selected_theme)
 
+dicionario = info.despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
 layout_login = [
         [sg.Text('Salário:\t'),sg.Stretch(),sg.Input(size=(6,1),key='salario'),sg.Btn('ok',size=(3,1))],
         [sg.Output(size=(25,6))],
@@ -17,10 +18,9 @@ while True:
             break
         
         if event == 'ok':
-            pass
+            calc.calculo(dicionario)
 
 window.close()
 
 
-dicionario = info.despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
-calc.calculo(dicionario)
+
