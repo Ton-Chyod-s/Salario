@@ -21,4 +21,4 @@ def mudar_conteudo_valor():
 
 if __name__ == '__main__':
 	print(despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10))
-	mudar_conteudo_valor()
+	
