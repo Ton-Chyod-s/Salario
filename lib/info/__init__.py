@@ -8,11 +8,11 @@ def despesas(**kwargs):
     return dicionario
 
 
-def mudar_conteudo_valor():
+def mudar_conteudo_valor(dicionario):
 	"""-> Modifica um dicionario.
     :numero pede ao usuario a confirmação/alteração de valores.
     :return: retorna um dicionario modificado."""
-	dicionario = despesas().copy()
+	#dicionario = despesas().copy()
 	for num, valor in dicionario.items():
 		numero = int(input(f'Digite um valor para {num} o atual é {valor}%: '))
 		dicionario[num] = numero
@@ -20,5 +20,5 @@ def mudar_conteudo_valor():
 		
 
 if __name__ == '__main__':
-	print(despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10))
-	
+	dicionario = despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
+	mudar_conteudo_valor(dicionario)

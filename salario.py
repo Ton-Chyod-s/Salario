@@ -28,17 +28,19 @@ while True:
                     [sg.Text('Investimento:\t'),sg.Stretch(),sg.Input(size=(6,1),key='inv')],
                     [sg.Text('Fundo_Emergencial:\t'),sg.Stretch(),sg.Input(size=(6,1),key='fe')],
                     [sg.Text('Pode_gastar:\t'),sg.Stretch(),sg.Input(size=(6,1),key='pg')],
-                    [sg.Button('confimar',size=(5,1))],
+                    [sg.Button('confimar',size=(8,1))],
                     ]
 
             window = sg.Window('Divisão', icon=' ',layout=layout_login, keep_on_top=True, finalize = True)
 
         while True:
-             event,values = window.read()
-             
-             if event == 'confimar':
-                info.mudar_conteudo_valor(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
+            event,values = window.read()
 
+            if event == 'confimar':
+                dicionario = info.despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
+                info.mudar_conteudo_valor(dicionario)
+            window.close()
+            
 window.close()
 
 
