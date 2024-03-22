@@ -14,7 +14,7 @@ def mudar_conteudo_valor():
     :return: retorna um dicionario modificado."""
 	dicionario = despesas().copy()
 	for num, valor in dicionario.items():
-		numero = int(input(f'Digite um valor para {num} o atual é {valor}: '))
+		numero = int(input(f'Digite um valor para {num} o atual é {valor}%: '))
 		dicionario[num] = numero
 	return print(dicionario)
 		
