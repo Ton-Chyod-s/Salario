@@ -33,14 +33,17 @@ while True:
 
             window = sg.Window('Divisão', icon=' ',layout=layout_login, keep_on_top=True, finalize = True)
 
-        while True:
-            event,values = window.read()
+            while True:
+                event,values = window.read()
+                if event == sg.WIN_CLOSED or event == 'Sair': 
+                    break
 
-            if event == 'confimar':
-                dicionario = info.despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
-                info.mudar_conteudo_valor(dicionario)
-            window.close()
-            
+                if event == 'confimar':
+                    dicionario = info.despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
+                    info.mudar_conteudo_valor(dicionario)
+                    
+                window.close()
+
 window.close()
 
 
