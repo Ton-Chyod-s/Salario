@@ -10,7 +10,7 @@ sg.theme(selected_theme)
 
 layout = [
         [sg.Text('Salário:\t'),sg.Stretch(),sg.Input(size=(6,1),key='salario'),sg.Btn('ok',size=(3,1))],
-        [sg.Output(size=(25,6), key = '_output_')],
+        [sg.Output(size=(35,6), key = '_output_')],
         [sg.Button('%',size=(5,1)),sg.Button('BD',size=(5,1))],
         ]
 
@@ -23,9 +23,12 @@ while True:
         
         if event == 'ok':
             window.FindElement('_output_').Update('')
-            lol = calc.calculo(dicionario,int(values['salario']))
-            #run(BD.salario(values['salario'],tempo.data()))
-            print(lol)
+            dict_salario = calc.calculo(dicionario,int(values['salario']))
+            print(f'Despesas: {dict_salario['Despesas']}\nInvestimentos: {dict_salario['Investimento']}\nFundo de Emergencia: {dict_salario['Fundo_Emergencial']}\nPode gastar a toa fih: {dict_salario['Pode_gastar']}')
+
+
+            run(BD.salario(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar']))
+        
 
         if event == 'BD':
             caminho_bd = os.path.abspath('salario.db')
