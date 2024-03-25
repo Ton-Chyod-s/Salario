@@ -1,5 +1,9 @@
-import time
+import datetime 
+from datetime import date
 
-data = time.timezone()
-
-print(data)
+def data():
+    data = date.today()
+    dia = data.day
+    mes = data.month
+    ano = data.year
+    return mes
