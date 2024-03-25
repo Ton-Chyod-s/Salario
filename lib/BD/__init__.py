@@ -26,14 +26,6 @@ class Salario(Base):
     def __repr__(self):
         return f'id:{self.id},salario:{self.salarioMes},mes:{self.mes}'
 
-class Porcentagem(Base):
-    __tablename__ = 'porcentagemDivisao'
-    id = Column(Integer,primary_key=True)
-    dict_porcentagem = Column(String(100),nullable=False)
-
-    def __repr__(self):
-        return f'dict_porc:{self.dict_porcentagem}'
-
 # Tabela divisaoSalario
 class DivSalario(Base):
     __tablename__ = 'divisaoSalario'
@@ -44,11 +36,27 @@ class DivSalario(Base):
     fundoEmergencial = Column(Integer, nullable=False)
     gastarAtoa = Column(Integer, nullable=False)
     salario_id = Column(Integer, ForeignKey('salarioMes.id'))
+
+    # Relacionamento com porcentagem
+    porcentagem = relationship('Porcentagem', back_populates='DivSalario')
     # Relacionamento com Salario
     salario = relationship('Salario', back_populates='div_salarios')
-
+    
     def __repr__(self):
         return f'id:{self.id},despesas:{self.despesas},investimento:{self.investimento},fundoEmergencial:{self.fundoEmergencial},gastarAtoa:{self.gastarAtoa}'
+
+class Porcentagem(Base):
+    __tablename__ = 'porcentagemDivisao'
+    id = Column(Integer,primary_key=True)
+    dict_porcentagem = Column(String(100),nullable=False)
+    
+    # Relacionamento com divSalario
+    DivSalario_id = Column(Integer, ForeignKey('DivSalario.id'))
+    porcentagem = relationship('DivSalario', back_populates='Porcentagem')
+
+    def __repr__(self):
+        return f'dict_porc:{self.dict_porcentagem}'
+
 
 # Função para criar banco de dados
 async def create_database():
