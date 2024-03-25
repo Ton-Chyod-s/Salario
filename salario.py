@@ -28,10 +28,10 @@ while True:
             print(f'Despesas: {dict_salario['Despesas']}\nInvestimentos: {dict_salario['Investimento']}\nFundo de Emergencia: {dict_salario['Fundo_Emergencial']}\nPode gastar a toa fih: {dict_salario['Pode_gastar']}')
             
             if os.path.exists(caminho_bd):
-                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar']))
+                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar'],'lolol'))
             else:
                 run(BD.create_database())
-                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar']))
+                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar'],'lolol'))
 
         if event == 'BD':
             caminho_bd = os.path.abspath('salario.db')
@@ -66,7 +66,7 @@ while True:
                     if soma > 100 or soma < 100:
                         print('Soma dos valores incorreta!!\nEra esperado 100%')
                     else:
-                        info.despesas(Despesas=float(values['desp']),Investimento=float(values['inv']),Fundo_Emergencial=float(values['fe']),Pode_gastar=float(values['pg']))
+                        info.despesas(Despesas=despesas,Investimento=investimento,Fundo_Emergencial=fundo_emergencial,Pode_gastar=pode_gastar)
                     
             window_porc.close()
 window.close()

@@ -49,7 +49,7 @@ class Porcentagem(Base):
     __tablename__ = 'porcentagemDivisao'
     id = Column(Integer,primary_key=True)
     dict_porcentagem = Column(String(100),nullable=False)
-    
+
     # Relacionamento com divSalario
     DivSalario_id = Column(Integer, ForeignKey('DivSalario.id'))
     porcentagem = relationship('DivSalario', back_populates='Porcentagem')
@@ -65,10 +65,12 @@ async def create_database():
         await conn.run_sync(Base.metadata.create_all)
 
 # Função para inserir dados de salário e divisão de salário
-async def inserir_dados(salario_mes, mes, despesas, investimento, fundo_emergencial, gastar_atoa):
+async def inserir_dados(salario_mes, mes, despesas, investimento, fundo_emergencial, gastar_atoa,porcentagem):
     async with SessionLocal() as session:
         salario_obj = Salario(salarioMes=salario_mes, mes=mes)
         div_salario_obj = DivSalario(despesas=despesas, investimento=investimento, fundoEmergencial=fundo_emergencial, gastarAtoa=gastar_atoa, salario=salario_obj)
+        porc = Porcentagem(porcentagem=porcentagem)
         session.add(salario_obj)
         session.add(div_salario_obj)
+        session.add(porc)
         await session.commit()
