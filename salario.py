@@ -1,4 +1,4 @@
-from lib import calc,info
+from lib import calc,info,BD
 import PySimpleGUI as sg
 dicionario = info.despesas(Despesas=60,Investimento=30,Fundo_Emergencial=5,Pode_gastar=5)
 
