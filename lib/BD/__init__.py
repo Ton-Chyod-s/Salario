@@ -56,9 +56,3 @@ async def inserir_dados(salario_mes, mes, despesas, investimento, fundo_emergenc
         session.add(salario_obj)
         session.add(div_salario_obj)
         await session.commit()
-
-# Criação do banco de dados
-run(create_database())
-
-# Inserção de dados de exemplo
-run(inserir_dados(5000, 3, 2000, 1000, 500, 1500))
