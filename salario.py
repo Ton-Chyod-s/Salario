@@ -1,4 +1,4 @@
-from lib import calc,info,BD
+from lib import calc,info,BD, tempo
 from asyncio import run
 import os
 import PySimpleGUI as sg
@@ -24,7 +24,8 @@ while True:
         if event == 'ok':
             window.FindElement('_output_').Update('')
             calc.calculo(dicionario,int(values['salario']))
-            run(BD.salario(values['salario']))
+            #run(BD.salario(values['salario'],tempo.data()))
+            
 
         if event == 'BD':
             caminho_bd = os.path.abspath('salario.db')
