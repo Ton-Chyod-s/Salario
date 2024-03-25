@@ -50,15 +50,13 @@ async def create_database():
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
-async def salario(salarioMes,mes):
+async def salario(salarioMes,mes,despesas,investimento,fundoEmergencial,gastarAtoa):
     async with session() as s:
-        arg = Salario(salarioMes=salarioMes,mes=mes)
+        venda = Salario(salarioMes=salarioMes,mes=mes)
+        s.add(venda)
+        arg = divSalario(despesas=despesas,investimento=investimento,fundoEmergencial=fundoEmergencial,gastarAtoa=gastarAtoa,Salario=venda)
         s.add(arg)
         await s.commit()
 
-async def div_Salario(despesas,investimento,fundoEmergencial,gastarAtoa):
-    async with session() as s:
-        arg = divSalario(despesas=despesas,investimento=investimento,fundoEmergencial=fundoEmergencial,gastarAtoa=gastarAtoa)
-        s.add(arg)
-        await s.commit()
+
 

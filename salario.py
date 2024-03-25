@@ -2,6 +2,7 @@ from lib import calc,info,BD
 from asyncio import run
 import os
 import PySimpleGUI as sg
+
 dicionario = info.despesas(Despesas=60,Investimento=30,Fundo_Emergencial=5,Pode_gastar=5)
 
 selected_theme = 'Reddit'
@@ -23,6 +24,7 @@ while True:
         if event == 'ok':
             window.FindElement('_output_').Update('')
             calc.calculo(dicionario,int(values['salario']))
+            run(BD.salario(values['salario']))
 
         if event == 'BD':
             caminho_bd = os.path.abspath('salario.db')
@@ -30,7 +32,6 @@ while True:
                 pass
             else:   
                 run(BD.create_database())
-
 
         if event == '%':
             layout_porc = [
