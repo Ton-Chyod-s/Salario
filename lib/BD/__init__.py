@@ -19,3 +19,23 @@ session = sessionmaker(
 )
 
 Base = declarative_base()
+#tablea salario  
+class Salario(Base):
+    __tablename__ = 'salarioMes'
+    #coluna da tabela
+    id =  Column(Integer, primary_key=True)
+    salarioMes = Column(Integer, nullable=False)
+    mes = Column(Integer, nullable=False)
+    posts = relationship('Venda', backref='cliente')
+
+    #modo grafico de representação
+    def __repr__(self):
+        return f'id:{self.id},salario:{self.salarioMes},mes:{self.mes}'
+    
+
+class divSalario(Base):
+    __tablename__ = 'divisaoSalario'
+    #colunas da tabela
+    id = Column(Integer, primary_key=True)
+    despesas = Column(Integer, nullable=False)
+    
