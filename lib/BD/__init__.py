@@ -1,63 +1,64 @@
-
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
-from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Column, Float
+from sqlalchemy import String, Integer, ForeignKey, Column
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
 
-#conectar/criar banco de dados
-url_do_branco = 'sqlite+aiosqlite:///salario.db'
-#criando conecção asincrona com bando de dados
-engine = create_async_engine(url_do_branco)
+# Conectar/criar banco de dados
+url_do_banco = 'sqlite+aiosqlite:///salario.db'
+# Criando conexão assíncrona com banco de dados
+engine = create_async_engine(url_do_banco)
 
-session = sessionmaker(
-    engine,
-    expire_on_commit = False,
-    future = True,
-    #se não declara a sessão é sincrona
-    class_ = AsyncSession,
-)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, class_=AsyncSession)
 
 Base = declarative_base()
-#tablea salario  
+
+# Tabela salario
 class Salario(Base):
     __tablename__ = 'salarioMes'
-    #coluna da tabela
-    id =  Column(Integer, primary_key=True)
+    # Colunas da tabela
+    id = Column(Integer, primary_key=True)
     salarioMes = Column(Integer, nullable=False)
     mes = Column(Integer, nullable=False)
-    div_salarios = relationship('divSalario', backref='Salario')
+    # Relacionamento com divSalario
+    div_salarios = relationship('DivSalario', back_populates='salario')
 
-    #modo grafico de representação
+    # Modo gráfico de representação
     def __repr__(self):
         return f'id:{self.id},salario:{self.salarioMes},mes:{self.mes}'
-    
-class divSalario(Base):
+
+# Tabela divisaoSalario
+class DivSalario(Base):
     __tablename__ = 'divisaoSalario'
-    #colunas da tabela
+    # Colunas da tabela
     id = Column(Integer, primary_key=True)
     despesas = Column(Integer, nullable=False)
     investimento = Column(Integer, nullable=False)
     fundoEmergencial = Column(Integer, nullable=False)
     gastarAtoa = Column(Integer, nullable=False)
-    salario_id = Column(Integer, ForeignKey('salario.id'))
-    salario = relationship('Salario', backref='div_salarios')
+    salario_id = Column(Integer, ForeignKey('salarioMes.id'))
+    # Relacionamento com Salario
+    salario = relationship('Salario', back_populates='div_salarios')
 
     def __repr__(self):
         return f'id:{self.id},despesas:{self.despesas},investimento:{self.investimento},fundoEmergencial:{self.fundoEmergencial},gastarAtoa:{self.gastarAtoa}'
-    
-#função para criar banco de dados 
+
+# Função para criar banco de dados
 async def create_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
-async def salario(salarioMes,mes,despesas,investimento,fundoEmergencial,gastarAtoa):
-    async with session() as s:
-        venda = Salario(salarioMes=salarioMes,mes=mes)
-        s.add(venda)
-        arg = divSalario(despesas=despesas,investimento=investimento,fundoEmergencial=fundoEmergencial,gastarAtoa=gastarAtoa,Salario=venda)
-        s.add(arg)
-        await s.commit()
+# Função para inserir dados de salário e divisão de salário
+async def inserir_dados(salario_mes, mes, despesas, investimento, fundo_emergencial, gastar_atoa):
+    async with SessionLocal() as session:
+        salario_obj = Salario(salarioMes=salario_mes, mes=mes)
+        div_salario_obj = DivSalario(despesas=despesas, investimento=investimento, fundoEmergencial=fundo_emergencial, gastarAtoa=gastar_atoa, salario=salario_obj)
+        session.add(salario_obj)
+        session.add(div_salario_obj)
+        await session.commit()
 
+# Criação do banco de dados
+run(create_database())
 
-
+# Inserção de dados de exemplo
+run(inserir_dados(5000, 3, 2000, 1000, 500, 1500))

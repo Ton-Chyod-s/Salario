@@ -27,7 +27,7 @@ while True:
             print(f'Despesas: {dict_salario['Despesas']}\nInvestimentos: {dict_salario['Investimento']}\nFundo de Emergencia: {dict_salario['Fundo_Emergencial']}\nPode gastar a toa fih: {dict_salario['Pode_gastar']}')
 
 
-            run(BD.salario(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar']))
+            run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar']))
         
 
         if event == 'BD':
