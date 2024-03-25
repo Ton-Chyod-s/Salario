@@ -3,7 +3,6 @@ from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from sqlalchemy import String, Integer, select, update, delete, ForeignKey, Column, Float
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from asyncio import run
-import time
 
 #conectar/criar banco de dados
 url_do_branco = 'sqlite+aiosqlite:///salario.db'
@@ -45,3 +44,15 @@ class divSalario(Base):
 
     def __repr__(self):
         return f'id:{self.id},despesas:{self.despesas},investimento:{self.investimento},fundoEmergencial:{self.fundoEmergencial},gastarAtoa:{self.gastarAtoa}'
+    
+#função para criar banco de dados 
+async def create_database():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
+        await conn.run_sync(Base.metadata.create_all)
+
+async def salario(id,salarioMes,mes):
+    async with session() as s:
+        arg = Salario(id=id,salarioMes=salarioMes,mes=mes)
+        s.add(arg)
+        await s.commit()
