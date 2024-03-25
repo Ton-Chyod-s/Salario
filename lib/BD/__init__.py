@@ -26,6 +26,12 @@ class Salario(Base):
     def __repr__(self):
         return f'id:{self.id},salario:{self.salarioMes},mes:{self.mes}'
 
+class Porcentagem(Base):
+    __tablename__ = 'porcentagemDivisao'
+    id = Column(Integer,primary_key=True)
+    despesas = Column(String,)
+    
+
 # Tabela divisaoSalario
 class DivSalario(Base):
     __tablename__ = 'divisaoSalario'
