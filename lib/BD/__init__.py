@@ -26,7 +26,7 @@ class Salario(Base):
     id =  Column(Integer, primary_key=True)
     salarioMes = Column(Integer, nullable=False)
     mes = Column(Integer, nullable=False)
-    posts = relationship('Venda', backref='cliente')
+    posts = relationship('divSalario', backref='Salario')
 
     #modo grafico de representação
     def __repr__(self):
@@ -38,4 +38,10 @@ class divSalario(Base):
     #colunas da tabela
     id = Column(Integer, primary_key=True)
     despesas = Column(Integer, nullable=False)
-    
+    investimento = Column(Integer, nullable=False)
+    fundoEmergencial = Column(Integer, nullable=False)
+    gastarAtoa = Column(Integer, nullable=False)
+    autor = relationship('Salario', backref='divSalario')
+
+    def __repr__(self):
+        return f'id:{self.id},despesas:{self.despesas},investimento:{self.investimento},fundoEmergencial:{self.fundoEmergencial},gastarAtoa:{self.gastarAtoa}'
