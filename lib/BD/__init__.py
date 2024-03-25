@@ -31,7 +31,6 @@ class Salario(Base):
     def __repr__(self):
         return f'id:{self.id},salario:{self.salarioMes},mes:{self.mes}'
     
-
 class divSalario(Base):
     __tablename__ = 'divisaoSalario'
     #colunas da tabela
@@ -51,8 +50,15 @@ async def create_database():
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
-async def salario(id,salarioMes,mes):
+async def salario(salarioMes,mes):
     async with session() as s:
-        arg = Salario(id=id,salarioMes=salarioMes,mes=mes)
+        arg = Salario(salarioMes=salarioMes,mes=mes)
         s.add(arg)
         await s.commit()
+
+async def div_Salario(despesas,investimento,fundoEmergencial,gastarAtoa):
+    async with session() as s:
+        arg = divSalario(despesas=despesas,investimento=investimento,fundoEmergencial=fundoEmergencial,gastarAtoa=gastarAtoa)
+        s.add(arg)
+        await s.commit()
+
