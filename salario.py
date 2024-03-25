@@ -39,8 +39,7 @@ while True:
                     break
 
                 if event == 'confimar':
-                    dicionario = info.despesas(Despesas=50,Investimento=30,Fundo_Emergencial=10,Pode_gastar=10)
-                    info.mudar_conteudo_valor(dicionario)
+                    info.despesas(Despesas=values['desp'],Investimento=values['inv'],Fundo_Emergencial=values['fe'],Pode_gastar=values['pg'])
                     
                 window.close()
 
