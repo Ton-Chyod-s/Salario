@@ -23,9 +23,9 @@ while True:
         
         if event == 'ok':
             window.FindElement('_output_').Update('')
-            calc.calculo(dicionario,int(values['salario']))
+            lol = calc.calculo(dicionario,int(values['salario']))
             #run(BD.salario(values['salario'],tempo.data()))
-            
+            print(lol)
 
         if event == 'BD':
             caminho_bd = os.path.abspath('salario.db')
