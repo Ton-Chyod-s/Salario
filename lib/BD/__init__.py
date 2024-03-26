@@ -68,9 +68,11 @@ async def create_database():
 async def inserir_dados(salario_mes, mes, despesas, investimento, fundo_emergencial, gastar_atoa,porcentagem):
     async with SessionLocal() as session:
         salario_obj = Salario(salario=salario_mes, mes=mes)
-        div_salario_obj = DivSalario(despesas=despesas, investimento=investimento, fundoEmergencial=fundo_emergencial, gastarAtoa=gastar_atoa, salario=salario_obj)
-        porc = Porcentagem(dict_porcentagem=porcentagem,salario_id=str(div_salario_obj.id))
         session.add(salario_obj)
+        div_salario_obj = DivSalario(despesas=despesas, investimento=investimento, fundoEmergencial=fundo_emergencial, gastarAtoa=gastar_atoa, salario=salario_obj)
         session.add(div_salario_obj)
+        await session.flush()
+        
+        porc = Porcentagem(dict_porcentagem=porcentagem,salario_id=str(div_salario_obj.id))
         session.add(porc)
         await session.commit()
