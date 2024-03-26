@@ -28,10 +28,10 @@ while True:
             print(f'Despesas: {dict_salario['Despesas']}\nInvestimentos: {dict_salario['Investimento']}\nFundo de Emergencia: {dict_salario['Fundo_Emergencial']}\nPode gastar a toa fih: {dict_salario['Pode_gastar']}')
             
             if os.path.exists(caminho_bd):
-                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar'],'lolol'))
+                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar'],str(dicionario)))
             else:
                 run(BD.create_database())
-                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar'],'lolol'))
+                run(BD.inserir_dados(values['salario'],tempo.data(),dict_salario['Despesas'],dict_salario['Investimento'],dict_salario['Fundo_Emergencial'],dict_salario['Pode_gastar'],str(dicionario)))
 
         if event == 'BD':
             caminho_bd = os.path.abspath('salario.db')
