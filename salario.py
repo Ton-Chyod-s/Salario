@@ -3,7 +3,7 @@ from asyncio import run
 import os
 import PySimpleGUI as sg
 
-dicionario = info.despesas(Despesas=60,Investimento=30,Fundo_Emergencial=5,Pode_gastar=5)
+dicionario = info.despesas(Despesas=60.0,Investimento=30.0,Fundo_Emergencial=5.0,Pode_gastar=5.0)
 
 selected_theme = 'Reddit'
 sg.theme(selected_theme)
