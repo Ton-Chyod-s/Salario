@@ -20,7 +20,6 @@ class Salario(Base):
     mes = Column(Integer, nullable=False)
     # Relacionamento com divSalario
     div_salarios = relationship('DivSalario', back_populates='salario')
-
     # Modo gráfico de representação
     def __repr__(self):
         return f'id:{self.id},salario:{self.salario},mes:{self.mes}'
@@ -34,9 +33,7 @@ class DivSalario(Base):
     investimento = Column(Integer, nullable=False)
     fundoEmergencial = Column(Integer, nullable=False)
     gastarAtoa = Column(Integer, nullable=False)
-
     salario_id = Column(Integer, ForeignKey('salarioMes.id'))
-
     # Relacionamento com porcentagem
     porc_relacionamento = relationship('Porcentagem', back_populates='div_salario')
     # Relacionamento com Salario
@@ -49,10 +46,8 @@ class Porcentagem(Base):
     __tablename__ = 'porcentagemDivisao'
     id = Column(Integer,primary_key=True, autoincrement=True)
     dict_porcentagem = Column(String(100),nullable=False)
-
     # Relacionamento com divSalario
     salario_id = Column(Integer, ForeignKey('divisaoSalario.id'))
-
     div_salario = relationship('DivSalario', back_populates='porc_relacionamento')
 
     def __repr__(self):
@@ -72,7 +67,7 @@ async def inserir_dados(salario_mes, mes, despesas, investimento, fundo_emergenc
         div_salario_obj = DivSalario(despesas=despesas, investimento=investimento, fundoEmergencial=fundo_emergencial, gastarAtoa=gastar_atoa, salario=salario_obj)
         session.add(div_salario_obj)
         await session.flush()
-        
+
         porc = Porcentagem(dict_porcentagem=porcentagem,salario_id=str(div_salario_obj.id))
         session.add(porc)
         await session.commit()
