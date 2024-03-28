@@ -1,11 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { useState } from 'react'
 
 export default function App() {
+  const [valor, setValor] = useState("")
+
+  function Imprimir(){
+    return console.log(valor)
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.texto}> Salario: </Text>
+    
+      <TextInput value={valor} onChangeText={setValor} placeholder='Digite o valor!'/>
+      
+      <TouchableOpacity style={styles.button} onPress={Imprimir}>
+        <Text>Calcular</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
@@ -17,4 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  texto: {
+    
+  }
 });
