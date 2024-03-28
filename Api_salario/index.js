@@ -26,7 +26,7 @@ function Calc(dicionario,salario) {
     return dict
 }
 
-const dicionario = Dict_porc('Despesas=60.0,Investimento=30.0,Fundo Emergencial=5.0,Pode gastar=5.0')
+const dicionario = Dict_porc(`Despesas=60,Investimento=30.0,Fundo Emergencial=5.0,Pode gastar=5.0`)
 const calculo = Calc(dicionario,2650)
 
 server.get('/',(req,res) => {
@@ -39,11 +39,18 @@ server.get('/salario/:id', (req, res) => {
     res.send(calculo);
 })
 
-server.get('/despesas/:id', (req, res) => {
-    const despesas = req.params.id
-    res.send(despesas)
-})
+server.get('/atualizarDict/:desp/:inv/:fundoEmergencial/:podeGastar/:id', (req, res) => {
+    const despesas = req.params.desp
+    const investimento = req.params.inv
+    const fundoEmergencial = req.params.fundoEmergencial
+    const podeGastar = req.params.podeGastar
+    const salario = req.params.id
 
+    const dicionario = Dict_porc(`Despesas=${despesas},Investimento=${investimento},Fundo Emergencial=${fundoEmergencial},Pode gastar=${podeGastar}`)
+    const calculo = Calc(dicionario,salario)
+
+    res.send(calculo)
+})
 
 server.listen(3000, () => {
     console.log('Servidor está funcionando...')
