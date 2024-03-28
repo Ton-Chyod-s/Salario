@@ -805,3 +805,15 @@ Api_salario/node_modules/.bin/mime.cmd
 Api_salario/node_modules/.bin/mime
 .vscode
 __pycache__
+Api_salario/node_modules/.yarn-integrity
+Api_salario/node_modules/nodemon/node_modules/.bin/nodetouch
+Api_salario/node_modules/nodemon/node_modules/.bin/nodetouch.cmd
+Api_salario/node_modules/nodemon/node_modules/.bin/semver
+Api_salario/node_modules/nodemon/node_modules/.bin/semver.cmd
+Api_salario/node_modules/send/node_modules/.bin/mime
+Api_salario/node_modules/send/node_modules/.bin/mime.cmd
+Api_salario/node_modules/simple-update-notifier/node_modules/.bin/semver
+Api_salario/node_modules/simple-update-notifier/node_modules/.bin/semver.cmd
+Api_salario/node_modules/touch/node_modules/.bin/nopt
+Api_salario/node_modules/touch/node_modules/.bin/nopt.cmd
+Api_salario/yarn.lock
