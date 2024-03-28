@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://dicionario",
+            "request": "launch",
+            "url": "http://dicionario"
+        }
+    ]
+}
