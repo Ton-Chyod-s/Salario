@@ -33,6 +33,18 @@ server.get('/',(req,res) => {
     return res.json(calculo)
 })
 
+server.get('/salario/:id', (req, res) => {
+    const id = req.params.id; // Access the dynamic segment
+    const calculo = Calc(dicionario,id)
+    res.send(calculo);
+})
+
+server.get('/despesas/:id', (req, res) => {
+    const despesas = req.params.id
+    res.send(despesas)
+})
+
+
 server.listen(3000, () => {
     console.log('Servidor está funcionando...')
     })
