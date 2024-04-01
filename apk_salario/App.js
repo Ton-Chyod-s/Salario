@@ -6,11 +6,13 @@ export default function App() {
   const [resultado, setResultado] = useState("");
 
   function Imprimir(){
-    return setResultado("lol");
+
+    
+    return setResultado("-");
   }
 
   function Limpar() {
-    return setResultado("")
+    return setResultado("") & setValor("")
   }
 
   return (
@@ -18,18 +20,19 @@ export default function App() {
       <Text style={styles.texto}> Salario: </Text>
     
       <TextInput value={valor} onChangeText={setValor} placeholder='Digite o valor!'/>
-      
-      <TouchableOpacity style={styles.button} onPress={Imprimir}>
-        <Text>Calcular</Text>
-      </TouchableOpacity>
+      <View style={styles.salario}>
+        <TouchableOpacity style={styles.button} onPress={Imprimir} >
+          <Text style={styles.texto}>Calcular</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={Limpar}>
-        <Text>Limpar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={Limpar}>
+          <Text style={styles.box_direita}>Limpar</Text>
+        </TouchableOpacity>
+      </View>
 
       <View>
-        <Text>Resultado: </Text>
-        <Text> {resultado}</Text>
+        <Text style={styles.texto}>Resultado: </Text>
+        <Text > {resultado}</Text>
       </View>
 
     </View>
@@ -39,10 +42,25 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  salario: {
+    flexDirection: 'row',
+  },
+  button: {
+    margin: 5,
+    padding: 10,
+    backgroundColor: 'lightblue',
+    borderRadius: 5,
   },
   texto: {
-  }
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  box_direita: {
+    color: 'white',
+    fontWeight: 'bold',
+    
+  },
 });
