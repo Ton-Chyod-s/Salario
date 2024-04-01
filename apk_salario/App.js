@@ -6,9 +6,7 @@ export default function App() {
   const [resultado, setResultado] = useState("");
 
   function Imprimir(){
-
-    
-    return setResultado("-");
+    return setResultado(`Você digitou ${valor}`);
   }
 
   function Limpar() {
