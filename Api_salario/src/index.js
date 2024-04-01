@@ -1,5 +1,6 @@
 const express = require('express');
 const server = express();
+const PORT = 3000;
 
 function Dict_porc(args) {
     let dicionario = {}
@@ -52,6 +53,6 @@ server.get('/atualizarDict/:desp/:inv/:fundoEmergencial/:podeGastar/:id', (req, 
     res.send(calculo)
 })
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
     console.log('Servidor está funcionando...')
     })
