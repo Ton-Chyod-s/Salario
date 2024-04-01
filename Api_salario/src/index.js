@@ -53,6 +53,6 @@ server.post('/atualizarDict/:desp/:inv/:fundoEmergencial/:podeGastar/:id', (req,
     res.send(calculo)
 })
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
     console.log('Servidor está funcionando...')
     })
