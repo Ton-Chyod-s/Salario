@@ -59,6 +59,5 @@ const styles = StyleSheet.create({
   box_direita: {
     color: 'white',
     fontWeight: 'bold',
-    
   },
 });
