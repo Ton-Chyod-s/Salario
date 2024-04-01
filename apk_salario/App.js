@@ -2,10 +2,15 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import { useState } from 'react'
 
 export default function App() {
-  const [valor, setValor] = useState("")
+  const [valor, setValor] = useState("");
+  const [resultado, setResultado] = useState("");
 
   function Imprimir(){
-    return console.log(valor)
+    return setResultado("lol");
+  }
+
+  function Limpar() {
+    return setResultado("")
   }
 
   return (
@@ -17,6 +22,15 @@ export default function App() {
       <TouchableOpacity style={styles.button} onPress={Imprimir}>
         <Text>Calcular</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={Limpar}>
+        <Text>Limpar</Text>
+      </TouchableOpacity>
+
+      <View>
+        <Text>Resultado: </Text>
+        <Text> {resultado}</Text>
+      </View>
 
     </View>
   );
@@ -30,6 +44,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   texto: {
-    
   }
 });
